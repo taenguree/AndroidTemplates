@@ -9,7 +9,7 @@ internal interface ${activityName}ChannelApi {
     fun ofLooknFeel(): Observable<${activityName}LooknFeel>
     fun ofViewAction(): Observable<${activityName}ViewAction>
     fun ofNavigation(): Observable<${activityName}Navigation>
-    fun accept(lifecycle: ActivityLifecycle)
+    fun accept(lifecycle: LifecycleState)
     fun accept(looknFeel: ${activityName}LooknFeel)
     fun accept(viewAction: ${activityName}ViewAction)
     fun accept(navigation: ${activityName}Navigation)

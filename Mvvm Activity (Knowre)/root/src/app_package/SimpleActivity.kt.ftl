@@ -1,7 +1,7 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
 import ${superClassFqcn}
-import com.knowre.android.patterns.R
+import com.knowre.android.R
 import android.os.Bundle
 <#if includeCppSupport!false>
 import kotlinx.android.synthetic.main.${layoutName}.*
@@ -20,7 +20,7 @@ internal class ${activityClass} : BaseActivity() {
     @Inject lateinit var channel: ${activityName}ChannelApi
 
     @Inject @field:${activityName} lateinit var disposable: CompositeDisposable
-    @Inject @field:RxMainThread lateinit var mainThread: Scheduler
+    @Inject @field:RxMainScheduler lateinit var mainThread: Scheduler
 
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
         createViewModel(${activityName}ViewModel::class.java)
@@ -52,6 +52,10 @@ internal class ${activityClass} : BaseActivity() {
         channel.accept(LifecycleState.OnDestroy())
 
         disposable.clear()
+    }
+
+    override fun screenName(): String {
+        return "" //TODO set screen name !
     }
 
 	private fun startViewModel() {

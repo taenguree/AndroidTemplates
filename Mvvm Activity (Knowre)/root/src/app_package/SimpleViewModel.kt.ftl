@@ -11,7 +11,7 @@ import javax.inject.Inject
 internal class ${activityName}ViewModel @Inject constructor(
         private val channel: ${activityName}ChannelApi,
         @${activityName} private val disposable: CompositeDisposable,
-        @RxIoThread private val ioThread: Scheduler
+        @RxIoScheduler private val ioThread: Scheduler
 
 ) : Startable, ViewModel() {
 
