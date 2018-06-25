@@ -1,8 +1,10 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
+import android.arch.lifecycle.ViewModel
 import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import com.knowre.rx.di.qulifier.RxIoScheduler
+import com.knowre.rx.common.Startable
 import javax.inject.Inject
 
 
@@ -11,7 +13,7 @@ internal class ${activityName}ViewModel @Inject constructor(
         @${activityName} private val disposable: CompositeDisposable,
         @RxIoThread private val ioThread: Scheduler
 
-) : ${activityName}ViewModelApi {
+) : Startable, ViewModel() {
 
     override fun start() {
         disposable.addAll(

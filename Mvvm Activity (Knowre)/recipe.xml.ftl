@@ -36,9 +36,6 @@
 	<instantiate from="root/src/app_package/SimpleViewModel.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${activityName}ViewModel.kt" />
 
-	<instantiate from="root/src/app_package/SimpleViewModelApi.kt.ftl"
-                   to="${escapeXmlAttribute(srcOut)}/${activityName}ViewModelApi.kt" />
-
     <open file="${escapeXmlAttribute(srcOut)}/${activityClass}.${ktOrJavaExt}" />
 
 </recipe>

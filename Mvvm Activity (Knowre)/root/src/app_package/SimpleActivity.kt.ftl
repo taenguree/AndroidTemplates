@@ -20,7 +20,7 @@ internal class ${activityClass} : BaseActivity() {
     @Inject lateinit var channel: ${activityName}ChannelApi
 
     @Inject @field:${activityName} lateinit var disposable: CompositeDisposable
-    @Inject @field:RxMainThread 	lateinit var mainThread: Scheduler
+    @Inject @field:RxMainThread lateinit var mainThread: Scheduler
 
     private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
         createViewModel(${activityName}ViewModel::class.java)
@@ -45,6 +45,14 @@ internal class ${activityClass} : BaseActivity() {
 <#include "../../../../common/jni_code_usage.kt.ftl">
     }
 <#include "../../../../common/jni_code_snippet.kt.ftl">
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        channel.accept(LifecycleState.OnDestroy())
+
+        disposable.clear()
+    }
 
 	private fun startViewModel() {
         viewModel.start()
