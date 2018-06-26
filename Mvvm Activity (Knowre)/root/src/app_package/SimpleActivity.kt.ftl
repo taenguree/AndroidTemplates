@@ -1,11 +1,7 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
-import ${superClassFqcn}
 import com.knowre.android.R
 import android.os.Bundle
-<#if includeCppSupport!false>
-import kotlinx.android.synthetic.main.${layoutName}.*
-</#if>
 import dagger.android.AndroidInjection
 import com.knowre.rx.di.qulifier.RxMainScheduler
 import com.knowre.rx.extension.subscribeOf
