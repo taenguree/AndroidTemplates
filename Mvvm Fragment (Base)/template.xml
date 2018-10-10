@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<template
+    format="4"
+    revision="2"
+    name="Mvvm Fragment (Base)"
+    minApi="3"
+    minBuildApi="3"
+    description="Creates a new mvvm fragment">
+
+    <category value="MVVM" />
+
+    <parameter
+        id="fragmentClass"
+        name="Fragment Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="MainFragment"
+        help="The name of the fargment class to create" />
+
+    <parameter
+        id="fragmentName"
+        name="Fragment Name"
+        type="string"
+        suggest="${underscoreToCamelCase(classToResource(fragmentClass))}"
+        default="Main"
+        help="The name of the fragment class to create without Fragment suffix" />
+
+    <parameter
+        id="packName"
+        name="Package Name"
+        type="string"
+        constraints="nonempty|unique"
+        default="blank"
+        visibility="false"
+        suggest="${classToResource(className)}"
+        help="The name of the package to create" />
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_fragment.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
