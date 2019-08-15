@@ -11,14 +11,12 @@ import dagger.multibindings.IntoMap
 @Module(includes = [${fragmentName}FragmentModule.ProvideModule::class])
 internal interface ${fragmentName}FragmentModule {
     @Module
-    class ProvideModule {
-        @Provides
-        @FragmentScope
-        @${fragmentName}
-        fun provideCompositeDisposable(): CompositeDisposable {
-            return CompositeDisposable()
-        }
-    }
+    class ProvideModule
+
+    @Binds
+    @PerFragment
+    @${fragmentName}
+    fun provideFragment(fragment: ${fragmentName?cap_first}Fragment): Fragment
 
     @Binds
     @FragmentScope
@@ -28,5 +26,9 @@ internal interface ${fragmentName}FragmentModule {
 
     @Binds
     @FragmentScope
-    fun provide${fragmentName?cap_first}Channel(channel: Channel): ChannelApi
+    fun provide${fragmentName?cap_first}Channel(channel: ${fragmentName}Channel): ${fragmentName}ChannelApi
+
+    @Binds
+    @FragmentScope
+    fun provide${fragmentName?cap_first}Repository(repository: ${fragmentName}Repository): ${fragmentName}RepositoryApi
 }

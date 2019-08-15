@@ -1,6 +1,5 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
 
-internal sealed class ViewAction {
-    
+internal sealed class ${fragmentName}ViewAction {   
 }

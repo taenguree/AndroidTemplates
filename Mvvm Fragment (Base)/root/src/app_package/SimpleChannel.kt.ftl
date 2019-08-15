@@ -6,18 +6,30 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 
-internal class Channel @Inject constructor() : ChannelApi {
+internal class ${fragmentName}Channel @Inject constructor() : ${fragmentName}ChannelApi {
 
-    private val looknFeelChannel: Relay<LooknFeel> = PublishRelay.create()
+	private val lifecycleChannel: Relay<FragmentLifecycle> = PublishRelay.create()
 
-    private val viewActionChannel: Relay<ViewAction> = PublishRelay.create()
+    private val looknFeelChannel: Relay<${fragmentName}LooknFeel> = PublishRelay.create()
 
-    override fun ofLooknFeel(): Observable<LooknFeel> = looknFeelChannel
+    private val viewActionChannel: Relay<${fragmentName}ViewAction> = PublishRelay.create()
 
-    override fun ofViewAction(): Observable<ViewAction> = viewActionChannel
+	private val navigationChannel: Relay<${fragmentName}Navigation> = PublishRelay.create()
 
-    override fun accept(looknFeel: LooknFeel) = looknFeelChannel.accept(looknFeel)
+    override fun ofLifecycle(): Observable<FragmentLifecycle> = lifecycleChannel
 
-    override fun accept(viewAction: ViewAction) = viewActionChannel.accept(viewAction)
+    override fun ofLooknFeel(): Observable<${fragmentName}LooknFeel> = looknFeelChannel
+
+    override fun ofViewAction(): Observable<${fragmentName}ViewAction> = viewActionChannel
+
+    override fun ofNavigation(): Observable<${fragmentName}Navigation> = navigationChannel
+
+    override fun accept(lifecycle: FragmentLifecycle) = lifecycleChannel.accept(lifecycle)
+
+    override fun accept(looknFeel: ${fragmentName}LooknFeel) = looknFeelChannel.accept(looknFeel)
+
+    override fun accept(viewAction: ${fragmentName}ViewAction) = viewActionChannel.accept(viewAction)
+
+    override fun accept(navigation: ${fragmentName}Navigation) = navigationChannel.accept(navigation)
 
 }

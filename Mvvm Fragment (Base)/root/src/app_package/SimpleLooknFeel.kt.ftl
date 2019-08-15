@@ -1,6 +1,5 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
 
-internal sealed class LooknFeel {
-
+internal sealed class ${fragmentName}LooknFeel {
 }
