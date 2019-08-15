@@ -16,11 +16,20 @@
   <instantiate from="src/app_package/SimpleChannel.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${activityName}Channel.kt" />
 
-	<instantiate from="src/app_package/SimpleChannelApi.kt.ftl"
+  <instantiate from="src/app_package/SimpleChannelApi.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${activityName}ChannelApi.kt" />
+
+  <instantiate from="src/app_package/SimpleRepository.kt.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/${activityName}Repository.kt" />
+
+	<instantiate from="src/app_package/SimpleRepositoryApi.kt.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/${activityName}RepositoryApi.kt" />
 
 	<instantiate from="src/app_package/SimpleLooknFeel.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${activityName}LooknFeel.kt" />
+
+  <instantiate from="src/app_package/SimpleNavigation.kt.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/${activityName}Navigation.kt" />
 
 	<instantiate from="src/app_package/SimpleModule.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${activityName}Module.kt" />
@@ -30,9 +39,6 @@
 
 	<instantiate from="src/app_package/SimpleViewModel.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${activityName}ViewModel.kt" />
-
-  <instantiate from="src/app_package/SimpleViewModelApi.kt.ftl"
-                   to="${escapeXmlAttribute(srcOut)}/${activityName}ViewModelApi.kt" />
 
   <open file="${escapeXmlAttribute(srcOut)}/${activityClass}.kt" />
 

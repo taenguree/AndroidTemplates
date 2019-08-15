@@ -9,23 +9,20 @@ import io.reactivex.disposables.CompositeDisposable
 
 @Module(includes = [${activityName}Module.ProvideModule::class])
 internal interface ${activityName}Module {
-
     @Module
-    class ProvideModule {
-        @Provides
-        @PerActivity
-        @${activityName}
-        fun provideCompositeDisposable(): CompositeDisposable {
-            return CompositeDisposable()
-        }
-    }
+    class ProvideModule
 
     @Binds
     @PerActivity
-    fun provide${activityName?cap_first}ViewModel(viewModel: ${activityName}ViewModel): ${activityName}ViewModelApi
+    @IntoMap
+    @ViewModelKey(${activityName}ViewModel::class)
+    fun provide${activityName?cap_first}ViewModel(viewModel: ${activityName}ViewModel): ViewModel
 
     @Binds
     @PerActivity
     fun provide${activityName?cap_first}Channel(channel: ${activityName}Channel): ${activityName}ChannelApi
 
+    @Binds
+    @PerActivity
+    fun provide${activityName?cap_first}Repository(repository: ${activityName}Repository): ${activityName}RepositoryApi
 }

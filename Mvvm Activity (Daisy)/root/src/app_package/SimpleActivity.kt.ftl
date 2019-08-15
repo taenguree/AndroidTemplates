@@ -1,72 +1,43 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
-import com.albatrosslab.www.daisy.R
 import android.os.Bundle
-import dagger.android.AndroidInjection
+import com.albatrosslab.www.daisy.R
 import com.albatrosslab.www.daisy.dto.LifecycleState
-import com.albatrosslab.www.daisy.screen.NavigationActivity
-import com.albatrosslab.www.daisy.di.qualifier.RxMainScheduler
-import com.albatrosslab.www.daisy.subscribeOf
-import io.reactivex.Scheduler
-import io.reactivex.disposables.CompositeDisposable
-import javax.inject.Inject
+import com.albatrosslab.www.daisy.extension.subscribeOf
+import com.albatrosslab.www.daisy.screen.base.NavigationActivity
+
 
 internal class ${activityClass} : NavigationActivity() {
 
-    @Inject lateinit var channel: ${activityName}ChannelApi
-    @Inject lateinit var viewModel: ${activityName}ViewModelApi
-
-    @Inject @field:${activityName} lateinit var disposable: CompositeDisposable
-    @Inject @field:RxMainScheduler lateinit var mainThread: Scheduler
+    private val viewModel by lazy { createViewModel(${activityName}ViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 <#if generateLayout>
         setContentView(R.layout.${layoutName})
 
-        AndroidInjection.inject(this)
-
-        initializeListener()
-
-        startViewModel()
-
         subscribeLooknFeel()
         subscribeNavigation()
 
-        channel.accept(LifecycleState.OnCreate(intent, savedInstanceState))
+        initializeListener()
+
+        viewModel.channel.accept(LifecycleState.OnCreate(intent, savedInstanceState))
 </#if>
 <#include "../../../../common/jni_code_usage.kt.ftl">
     }
 <#include "../../../../common/jni_code_snippet.kt.ftl">
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        channel.accept(LifecycleState.OnDestroy())
-
-        disposable.clear()
-    }
-
-	private fun startViewModel() {
-        viewModel.start()
-    }
-
     private fun subscribeLooknFeel() {
-        disposable.addAll(
-                channel.ofLooknFeel()
-                        .observeOn(mainThread)
-                        .subscribeOf(
-                                onNext = {
-                                    
-                                }
-                        )
-        )
+        with(viewModel) {
+            activityDisposable.addAll(
+                    
+            )
+        }
     }
 
     private fun subscribeNavigation() {
-        disposable.addAll(
-                channel.ofNavigation()
-                        .observeOn(mainThread)
+        activityDisposable.addAll(
+                viewModel.channel.ofNavigation()
                         .subscribeOf(
                                 onNext = {
 
@@ -76,7 +47,7 @@ internal class ${activityClass} : NavigationActivity() {
     }
 
     private fun initializeListener() {
-
+        
     }
 
 }
