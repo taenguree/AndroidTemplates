@@ -4,6 +4,7 @@ import javax.inject.Inject
 
 
 internal class ${fragmentName}Repository @Inject constructor(
+		private val dataSource: ${fragmentName}DataSourceApi
 
 ) : ${fragmentName}RepositoryApi {
 

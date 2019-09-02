@@ -1,7 +1,6 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
 import android.arch.lifecycle.ViewModel
-import io.reactivex.disposables.CompositeDisposable
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -19,16 +18,20 @@ internal interface ${fragmentName}FragmentModule {
     fun provideFragment(fragment: ${fragmentName?cap_first}Fragment): Fragment
 
     @Binds
-    @FragmentScope
+    @PerFragment
     @IntoMap
     @ViewModelKey(${fragmentName}FragmentViewModel::class)
     fun provideViewModel(${fragmentName?lower_case}FragmentViewModel: ${fragmentName}FragmentViewModel): ViewModel
 
     @Binds
-    @FragmentScope
+    @PerFragment
     fun provide${fragmentName?cap_first}Channel(channel: ${fragmentName}Channel): ${fragmentName}ChannelApi
 
     @Binds
-    @FragmentScope
+    @PerFragment
     fun provide${fragmentName?cap_first}Repository(repository: ${fragmentName}Repository): ${fragmentName}RepositoryApi
+
+    @Binds
+    @PerFragment
+    fun provide${fragmentName?cap_first}DataSource(dataSource: ${fragmentName}DataSource): ${fragmentName}DataSourceApi
 }

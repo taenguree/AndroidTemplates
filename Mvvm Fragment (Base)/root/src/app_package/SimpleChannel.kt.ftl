@@ -16,6 +16,8 @@ internal class ${fragmentName}Channel @Inject constructor() : ${fragmentName}Cha
 
 	private val navigationChannel: Relay<${fragmentName}Navigation> = PublishRelay.create()
 
+    private val dataChannel: Relay<${fragmentName}DataEvent> = PublishRelay.create()
+
     override fun ofLifecycle(): Observable<FragmentLifecycle> = lifecycleChannel
 
     override fun ofLooknFeel(): Observable<${fragmentName}LooknFeel> = looknFeelChannel
@@ -24,6 +26,8 @@ internal class ${fragmentName}Channel @Inject constructor() : ${fragmentName}Cha
 
     override fun ofNavigation(): Observable<${fragmentName}Navigation> = navigationChannel
 
+    override fun ofData(): Observable<${fragmentName}DataEvent> = dataChannel
+
     override fun accept(lifecycle: FragmentLifecycle) = lifecycleChannel.accept(lifecycle)
 
     override fun accept(looknFeel: ${fragmentName}LooknFeel) = looknFeelChannel.accept(looknFeel)
@@ -31,5 +35,7 @@ internal class ${fragmentName}Channel @Inject constructor() : ${fragmentName}Cha
     override fun accept(viewAction: ${fragmentName}ViewAction) = viewActionChannel.accept(viewAction)
 
     override fun accept(navigation: ${fragmentName}Navigation) = navigationChannel.accept(navigation)
+
+    override fun accept(data: ${fragmentName}DataEvent) = dataChannel.accept(data)
 
 }

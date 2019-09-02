@@ -21,6 +21,12 @@
   <instantiate from="src/app_package/SimpleRepositoryApi.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${fragmentName}RepositoryApi.kt" />
 
+  <instantiate from="src/app_package/SimpleDataSource.kt.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/${fragmentName}DataSource.kt" />
+
+  <instantiate from="src/app_package/SimpleDataSourceApi.kt.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/${fragmentName}DataSourceApi.kt" />
+
 	<instantiate from="src/app_package/SimpleLooknFeel.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${fragmentName}LooknFeel.kt" />
 
@@ -32,6 +38,9 @@
 
   <instantiate from="src/app_package/SimpleNavigation.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${fragmentName}Navigation.kt" />
+
+  <instantiate from="src/app_package/SimpleDataEvent.kt.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/${fragmentName}DataEvent.kt" />
 
 	<instantiate from="src/app_package/SimpleViewModel.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${fragmentName}FragmentViewModel.kt" />

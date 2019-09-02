@@ -3,7 +3,6 @@ package ${escapeKotlinIdentifiers(packageName)}
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import com.albatrosslab.www.daisy.di.scope.PerActivity
 import io.reactivex.disposables.CompositeDisposable
 
 

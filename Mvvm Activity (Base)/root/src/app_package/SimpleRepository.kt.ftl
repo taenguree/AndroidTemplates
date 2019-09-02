@@ -4,7 +4,7 @@ import javax.inject.Inject
 
 
 internal class ${activityName}Repository @Inject constructor(
-		private val ${activityName}DataSource: ${activityName}DataSourceApi
+		private val dataSource: ${activityName}DataSourceApi
 
 ) : ${activityName}RepositoryApi {
 
