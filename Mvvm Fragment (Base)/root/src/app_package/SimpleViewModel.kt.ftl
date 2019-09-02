@@ -10,15 +10,15 @@ internal class ${fragmentName}FragmentViewModel @Inject constructor(
 
 ) : BaseViewModel() {
 
-	val viewActionInput  by lazy(LazyThreadSafetyMode.NONE, this::ViewActionInput)
-    val lifecycleInput   by lazy(LazyThreadSafetyMode.NONE, this::LifecycleInput)
-    val dataInput        by lazy(LazyThreadSafetyMode.NONE, this::DataInput)
-    val looknFeelOutput  by lazy(LazyThreadSafetyMode.NONE, this::LooknFeelOutput)
-    val navigationOutput by lazy(LazyThreadSafetyMode.NONE, this::NavigationOutput)
-
-    inner class ViewActionInput
+    private val lifecycleInput by lazy(LazyThreadSafetyMode.NONE, this::LifecycleInput)
+    private val viewActionInput by lazy(LazyThreadSafetyMode.NONE, this::ViewActionInput)
+    private val dataInput by lazy(LazyThreadSafetyMode.NONE, this::DataInput)
+    private val looknFeelOutput by lazy(LazyThreadSafetyMode.NONE, this::LooknFeelOutput)
+    private val navigationOutput by lazy(LazyThreadSafetyMode.NONE, this::NavigationOutput)
 
     inner class LifecycleInput
+
+    inner class ViewActionInput
 
     inner class DataInput
 

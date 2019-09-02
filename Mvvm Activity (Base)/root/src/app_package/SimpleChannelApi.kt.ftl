@@ -1,11 +1,18 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
 import io.reactivex.Observable
+import com.albatrosslab.www.daisy.dto.LifecycleState
 
 
-internal interface ChannelApi {
-    fun ofLooknFeel(): Observable<LooknFeel>
-    fun ofViewAction(): Observable<ViewAction>
-    fun accept(looknFeel: LooknFeel)
-    fun accept(viewAction: ViewAction)
+internal interface ${activityName}ChannelApi {
+    fun ofLifecycle(): Observable<LifecycleState>
+    fun ofLooknFeel(): Observable<${activityName}LooknFeel>
+    fun ofViewAction(): Observable<${activityName}ViewAction>
+    fun ofNavigation(): Observable<${activityName}Navigation>
+    fun ofData(): Observable<${activityName}DataEvent>
+    fun accept(lifecycle: LifecycleState)
+    fun accept(looknFeel: ${activityName}LooknFeel)
+    fun accept(viewAction: ${activityName}ViewAction)
+    fun accept(navigation: ${activityName}Navigation)
+    fun accept(data: ${activityName}DataEvent)
 }

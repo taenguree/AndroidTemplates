@@ -1,32 +1,32 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
-import android.arch.lifecycle.ViewModel
-import io.reactivex.disposables.CompositeDisposable
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import dagger.multibindings.IntoMap
+import com.albatrosslab.www.daisy.di.scope.PerActivity
+import io.reactivex.disposables.CompositeDisposable
 
 
 @Module(includes = [${activityName}Module.ProvideModule::class])
 internal interface ${activityName}Module {
     @Module
-    class ProvideModule {
-        @Provides
-        @ActivityScope
-        @${activityName}
-        fun provideCompositeDisposable(): CompositeDisposable {
-            return CompositeDisposable()
-        }
-    }
+    class ProvideModule
 
     @Binds
-    @ActivityScope
+    @PerActivity
     @IntoMap
     @ViewModelKey(${activityName}ViewModel::class)
-    fun provideViewModel(${activityName?lower_case}ViewModel: ${activityName}ViewModel): ViewModel
+    fun provide${activityName?cap_first}ViewModel(viewModel: ${activityName}ViewModel): ViewModel
 
     @Binds
-    @ActivityScope
-    fun provide${activityName?cap_first}Channel(channel: Channel): ChannelApi
+    @PerActivity
+    fun provide${activityName?cap_first}Channel(channel: ${activityName}Channel): ${activityName}ChannelApi
+
+    @Binds
+    @PerActivity
+    fun provide${activityName?cap_first}Repository(repository: ${activityName}Repository): ${activityName}RepositoryApi
+
+    @Binds
+    @PerActivity
+    fun provide${activityName?cap_first}DataSource(dataSource: ${activityName}DataSource): ${activityName}DataSourceApi
 }

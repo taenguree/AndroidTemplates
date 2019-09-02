@@ -1,6 +1,6 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
 
-internal sealed class ${activityName}ViewAction {
+internal sealed class ${activityName}DataEvent {
     
 }
