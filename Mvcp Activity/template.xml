@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<template
+    format="4"
+    revision="2"
+    name="Mvcp Activity"
+    minApi="3"
+    minBuildApi="3"
+    description="Creates a new mvcp activity">
+
+    <category value="MVCP" />
+
+    <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="MainActivity"
+        help="The name of the activity class to create" />
+
+    <parameter
+        id="activityName"
+        name="Activity Name"
+        type="string"
+        suggest="${underscoreToCamelCase(classToResource(activityClass))}"
+        default="Main"
+        help="The name of the activity class to create without Activity suffix" />
+
+    <parameter
+        id="generateLayout"
+        name="Generate Layout File"
+        type="boolean"
+        default="true"
+        help="If true, a layout file will be generated" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${activityToLayout(activityClass)}"
+        default="activity_main"
+        visibility="generateLayout"
+        help="The name of the layout to create for the activity" />
+
+    <parameter
+        id="packName"
+        name="Package Name"
+        type="string"
+        constraints="nonempty|unique"
+        default="blank"
+        visibility="false"
+        suggest="${classToResource(className)}"
+        help="The name of the package to create" />
+
+    <!-- 128x128 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>
