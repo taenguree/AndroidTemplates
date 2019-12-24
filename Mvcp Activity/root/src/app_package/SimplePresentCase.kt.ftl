@@ -5,10 +5,11 @@ import javax.inject.Inject
 
 
 internal class ${activityName}PresentCase @Inject constructor(
-        private val weakView: WeakReference<${activityName}View>,
         private val caseProvider: ${activityName}CaseProviderApi
 
 ) : ${activityName}PresentCaseApi {
+
+    private var weakView: WeakReference<${activityName}View>? = null
 
     private val looknFeelCase by lazy(LazyThreadSafetyMode.NONE, ::LooknFeelCase)
 
@@ -22,6 +23,10 @@ internal class ${activityName}PresentCase @Inject constructor(
         caseProvider.disposable().addAll(
 
         )
+    }
+
+    override fun setView(weakView: WeakReference<${activityName}View>) {
+        this.weakView = weakView
     }
 
     override fun onLifecycle(lifecycleState: LifecycleState) = caseProvider.channel().accept(lifecycleState)

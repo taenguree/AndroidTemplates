@@ -11,7 +11,7 @@
                    to="${escapeXmlAttribute(srcOut)}/${activityClass}.kt" />
 
   <instantiate from="src/app_package/SimpleActivityView.kt.ftl"
-                   to="${escapeXmlAttribute(srcOut)}/${activityClass}View.kt" />
+                   to="${escapeXmlAttribute(srcOut)}/${activityName}View.kt" />
 
   <instantiate from="src/app_package/SimpleActivityQualifier.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${activityName}.kt" />
@@ -63,6 +63,9 @@
 
   <instantiate from="src/app_package/SimpleDisposableProvider.kt.ftl"
                    to="${escapeXmlAttribute(srcOut)}/${activityName}DisposableProvider.kt" />
+
+  <instantiate from="src/app_package/SimpleViewModel.kt.ftl"
+                   to="${escapeXmlAttribute(srcOut)}/${activityName}ViewModel.kt" />
 
   <open file="${escapeXmlAttribute(srcOut)}/${activityClass}.kt" />
 

@@ -1,16 +1,18 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProviders
 import androidx.appcompat.app.AppCompatActivity
 import dagger.android.AndroidInjection
+import java.lang.ref.WeakReference
 import javax.inject.Inject
 
 
 internal class ${activityClass} : AppCompatActivity(), ${activityName}View {
 
-    @Inject lateinit var presentCase: ${activityName}PresentCaseApi
+    @Inject lateinit var viewModelProviderFactory: ViewModelProviderFactory
 
-    @Inject lateinit var sourceCase: ${activityName}SourceCaseApi
+    private val viewModel by lazy { ViewModelProviders.of(this, viewModelProviderFactory)[${activityName}ViewModel::class.java] }
 
     override fun onCreate(savedInstanceState: Bundle?) {
     	AndroidInjection.inject(this)
@@ -21,13 +23,15 @@ internal class ${activityClass} : AppCompatActivity(), ${activityName}View {
 </#if>
         initializeListener()
 
-        presentCase.onLifecycle(LifecycleState.OnCreate(intent, savedInstanceState))
+        viewModel.presentCase.setView(WeakReference(this))
+
+        viewModel.presentCase.onLifecycle(LifecycleState.OnCreate(intent, savedInstanceState))
     }
 
     override fun onDestroy() {
         super.onDestroy()
 
-        presentCase.onLifecycle(LifecycleState.OnDestroy)
+        viewModel.presentCase.onLifecycle(LifecycleState.OnDestroy)
     }
 
     override fun bindLooknFeelCase(looknFeelCase: ${activityName}LooknFeelCase) {

@@ -16,20 +16,11 @@ internal class ${activityName}CaseProvider @Inject constructor(
 
     private val dataEventCase by lazy(LazyThreadSafetyMode.NONE, this::DataCase)
 
-    inner class LifecycleCase {
-		val onDestroy = channel.ofLifecycle().ofType<LifecycleState.OnDestroy>()
-    }
+    inner class LifecycleCase
 
     inner class ViewActionCase
 
     inner class DataCase
-
-    init {
-        disposable.get().addAll(
-                lifecycleCase.onDestroy
-                        .subscribeOf(onNext = { disposable.get().clear() })
-        )
-    }
 
     override fun channel() = channel
 
