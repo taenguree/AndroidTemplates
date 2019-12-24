@@ -1,9 +1,11 @@
 package ${escapeKotlinIdentifiers(packageName)}
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.multibindings.IntoMap
 import io.reactivex.disposables.CompositeDisposable
 import java.lang.ref.WeakReference
 
@@ -31,6 +33,12 @@ internal interface ${activityName}Module {
             return ${activityName}DisposableProvider(disposable)
         }
     }
+
+    @Binds
+    @ActivityScope
+    @IntoMap
+    @ViewModelKey(${activityName}ViewModel::class)
+    fun provideViewModel(viewModel: ${activityName}ViewModel): ViewModel
 
     @Binds
     @ActivityScope
