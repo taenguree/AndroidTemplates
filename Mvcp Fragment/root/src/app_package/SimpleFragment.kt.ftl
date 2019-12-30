@@ -41,11 +41,11 @@ internal class ${fragmentClass} : Fragment(), ${fragmentName}View {
     }
 
     override fun bindLooknFeelCase(looknFeelCase: ${fragmentName}LooknFeelCase) {
-        when(looknFeelCase) {}
+        when (looknFeelCase) {}
     }
 
     override fun bindNavigationCase(navigationCase: ${fragmentName}NavigationCase) {
-        when(navigationCase) {}
+        when (navigationCase) {}
     }
 
     private fun initializeListener() {}

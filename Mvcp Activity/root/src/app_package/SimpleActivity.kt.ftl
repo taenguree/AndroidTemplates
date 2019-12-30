@@ -35,11 +35,11 @@ internal class ${activityClass} : AppCompatActivity(), ${activityName}View {
     }
 
     override fun bindLooknFeelCase(looknFeelCase: ${activityName}LooknFeelCase) {
-        when(looknFeelCase) {}
+        when (looknFeelCase) {}
     }
 
     override fun bindNavigationCase(navigationCase: ${activityName}NavigationCase) {
-        when(navigationCase) {}
+        when (navigationCase) {}
     }
 
     private fun initializeListener() {}
