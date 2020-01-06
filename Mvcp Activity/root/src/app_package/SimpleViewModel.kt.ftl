@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 internal class ${activityName}ViewModel @Inject constructor(
                 val presentCase: ${activityName}PresentCaseApi,
-        private val sourCase: ${activityName}SourceCaseApi,
+        private val sourceCase: ${activityName}SourceCaseApi,
         private val caseProvider: ${activityName}CaseProviderApi
 
 ) : ViewModel() {
